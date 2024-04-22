@@ -8,7 +8,7 @@ import foxLogo from "../public/images/fox-logo.png";
 export default async function Home() {
   const data = await getHomepage();
 
-  const { Hero, Content, Expertises, Gallery, SectionImageOverlay } = data;
+  const { Hero, Content, Expertises, Gallery } = data;
 
   return (
     <main className="no-scrollbar w-screen">
@@ -43,7 +43,7 @@ export default async function Home() {
         <div id="container" className=" px-6 sm:px-24 w-full h-full">
           <div className="flex xl:flex-row xl:gap-64 flex-col h-full justify-center xl:items-center">
             <div className="flex flex-col h-full sm:justify-center xl:gap-12 xl:text-center">
-              <p className="uppercase text-xl">{Content.heading}</p>
+              <p className="uppercase text-xl">Fox Design</p>
               <p>{Content.tagline}</p>
             </div>
             <div className="flex flex-col gap-3 items-start sm:gap-9 xl:w-3/4">

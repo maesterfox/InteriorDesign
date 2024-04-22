@@ -1,37 +1,45 @@
 "use client";
-import headerData from "@/data/header.json";
-import Link from "next/link";
 import { useState } from "react";
+import Link from "next/link";
+import headerData from "@/data/header.json";
+
 const HeaderComponent = () => {
   const [showMenu, setShowMenu] = useState(false);
 
   const toggleMenu = () => {
-    console.log("click");
     setShowMenu((prev) => !prev);
   };
+
+  const handleLinkClick = () => {
+    if (showMenu) {
+      setShowMenu(false);
+    }
+  };
+
   return (
     <header className="flex justify-between items-center px-6 absolute z-10 w-full">
-      <div className=" flex justify-between w-full items-center py-3 border-b-2 border-white">
+      <div className="flex justify-between w-full items-center py-3 border-b-2 border-white">
         <Link href="/" className="Arial text-white text-xl">
           FoxDesign
         </Link>
 
         <ul
-          className={`flex flex-col duration-300 sm:flex-row absolute right-0 bg-black w-screen h-screen sm:h-fit sm:w-fit sm:top-0 sm:relative sm:bg-transparent gap-6 justify-center items-center ${showMenu ? "top-0" : "-top-[100vh]"} `}
+          className={`flex flex-col duration-300 sm:flex-row absolute right-0 bg-black w-screen h-screen sm:h-fit sm:w-fit sm:top-0 sm:relative sm:bg-transparent gap-6 justify-center items-center ${
+            showMenu ? "top-0" : "-top-[100vh]"
+          }`}
         >
-          {headerData.header.map((item, index) => {
-            return (
-              <>
-                <li className="text-white text-base">
-                  <Link href={item.href}>{item.label}</Link>
-                </li>
-              </>
-            );
-          })}
+          {headerData.header.map((item, index) => (
+            <li className="text-white text-base" key={index}>
+              <Link href={item.href} onClick={handleLinkClick}>
+                {item.label}
+              </Link>
+            </li>
+          ))}
         </ul>
+
         <div>
           <button
-            onClick={() => toggleMenu()}
+            onClick={toggleMenu}
             className="text-white sm:hidden z-20 relative"
           >
             {showMenu ? "Close" : "Menu"}
